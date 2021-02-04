@@ -1,10 +1,10 @@
-import {DtaaApplication} from './application';
+import {DiameterTranslatorAgentApiApplication} from './application';
 
 export async function migrate(args: string[]) {
   const existingSchema = args.includes('--rebuild') ? 'drop' : 'alter';
   console.log('Migrating schemas (%s existing schema)', existingSchema);
 
-  const app = new DtaaApplication();
+  const app = new DiameterTranslatorAgentApiApplication();
   await app.boot();
   await app.migrateSchema({existingSchema});
 

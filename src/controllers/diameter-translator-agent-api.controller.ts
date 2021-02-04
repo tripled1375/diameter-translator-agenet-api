@@ -1,10 +1,12 @@
 import {api, operation, param, requestBody} from '@loopback/rest';
 import {DirectDebtEventRequest} from '../models/direct-debt-event-request.model';
 import {DirectDebtEventResponse} from '../models/direct-debt-event-response.model';
+import {RefundEventRequest} from '../models/refund-event-request.model';
+import {RefundEventResponse} from '../models/refund-event-response.model';
 
 /**
  * The controller class is generated from OpenAPI spec with operations tagged
- * by direct_debt_event_api.
+ * by diameter_translator_agent_api.
  *
  */
 @api({
@@ -203,19 +205,6 @@ import {DirectDebtEventResponse} from '../models/direct-debt-event-response.mode
         },
         example: '{\n    "responseHeader": {\n        "requestTimestamp": 50.01\n    },\n   "result": "some text",\n   "creditId": "UUID"\n}',
       },
-      Mdn: {
-        description: 'The MDN to be charged/refunded.',
-        required: [
-          'mdn',
-        ],
-        properties: {
-          mdn: {
-            description: 'The MDN to be charged/refunded.',
-            type: 'string',
-          },
-        },
-        example: '{\n    "mdn": "string"\n}',
-      },
       RefundEventResultCode: {
         description: 'The result of the refund event request.',
         required: [
@@ -312,11 +301,24 @@ import {DirectDebtEventResponse} from '../models/direct-debt-event-response.mode
         },
         example: '{\n    "responseTimestamp": 0000000000\n}',
       },
+      Mdn: {
+        description: 'The MDN to be charged/refunded.',
+        required: [
+          'mdn',
+        ],
+        properties: {
+          mdn: {
+            description: 'The MDN to be charged/refunded.',
+            type: 'string',
+          },
+        },
+        example: '{\n    "mdn": "string"\n}',
+      },
     },
   },
   paths: {},
 })
-export class DirectDebtEventApiController {
+export class DiameterTranslatorAgentApiController {
   constructor() {}
 
   /**
@@ -335,9 +337,11 @@ export class DirectDebtEventApiController {
       },
     },
   },
+  tags: [
+    'diameter_translator_agent_api',
+  ],
   responses: {
     '200': {
-      description: 'The result of the request.',
       content: {
         'application/json': {
           schema: {
@@ -345,11 +349,9 @@ export class DirectDebtEventApiController {
           },
         },
       },
+      description: 'The result of the request.',
     },
   },
-  tags: [
-    'direct_debt_event_api',
-  ],
   operationId: 'DirectDebtEvent',
   summary: 'MDN Charge',
   description: 'Create a new charge against a mdn.',
@@ -363,6 +365,53 @@ export class DirectDebtEventApiController {
     },
   },
 }) _requestBody: DirectDebtEventRequest): Promise<DirectDebtEventResponse> {
+    throw new Error('Not implemented');
+  }
+
+  /**
+   * Create a new credit for a mdn.
+   *
+   * @param _requestBody
+   * @returns The result of the request.
+   */
+  @operation('post', '/v1/refund-event', {
+  requestBody: {
+    content: {
+      'application/json': {
+        schema: {
+          $ref: '#/components/schemas/RefundEventRequest',
+        },
+      },
+    },
+  },
+  tags: [
+    'diameter_translator_agent_api',
+  ],
+  responses: {
+    '200': {
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/components/schemas/RefundEventResponse',
+          },
+        },
+      },
+      description: 'The result of the request.',
+    },
+  },
+  operationId: 'RefundEvent',
+  summary: 'MDN Credit',
+  description: 'Create a new credit for a mdn.',
+})
+  async refundEvent(@requestBody({
+  content: {
+    'application/json': {
+      schema: {
+        $ref: '#/components/schemas/RefundEventRequest',
+      },
+    },
+  },
+}) _requestBody: RefundEventRequest): Promise<RefundEventResponse> {
     throw new Error('Not implemented');
   }
 

@@ -1,9 +1,9 @@
-import {ApplicationConfig, DtaaApplication} from './application';
+import {ApplicationConfig, DiameterTranslatorAgentApiApplication} from './application';
 
 export * from './application';
 
 export async function main(options: ApplicationConfig = {}) {
-  const app = new DtaaApplication(options);
+  const app = new DiameterTranslatorAgentApiApplication(options);
   await app.boot();
   await app.start();
 

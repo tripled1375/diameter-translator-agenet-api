@@ -1,9 +1,9 @@
 import {Client} from '@loopback/testlab';
-import {DtaaApplication} from '../..';
+import {DiameterTranslatorAgentApiApplication} from '../..';
 import {setupApplication} from './test-helper';
 
 describe('HomePage', () => {
-  let app: DtaaApplication;
+  let app: DiameterTranslatorAgentApiApplication;
   let client: Client;
 
   before('setupApplication', async () => {
