@@ -27,9 +27,7 @@ import {RefundEventResponse} from '../models/refund-event-response.model';
       },
       AccountId: {
         description: 'The TOPS BA ID for this mdn.',
-        required: [
-          'accountId',
-        ],
+        required: [],
         properties: {
           accountId: {
             description: 'The TOPS BA ID for this mdn.',
@@ -139,8 +137,7 @@ import {RefundEventResponse} from '../models/refund-event-response.model';
           'mdn',
           'chargeId',
           'amount',
-          'description',
-          'accountId',
+          'description'
         ],
         properties: {
           requestHeader: {

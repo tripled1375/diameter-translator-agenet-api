@@ -15,11 +15,11 @@ export class AccountId {
   /**
    * The TOPS BA ID for this mdn.
    */
-  @property({required: true, jsonSchema: {
+  @property({jsonSchema: {
   description: 'The TOPS BA ID for this mdn.',
   type: 'string',
 }})
-  accountId: string;
+  accountId?: string;
 
 }
 

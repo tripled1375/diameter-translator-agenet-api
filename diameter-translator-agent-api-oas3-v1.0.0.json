@@ -90,9 +90,7 @@
             },
             "AccountId": {
                 "description": "The TOPS BA ID for this mdn.",
-                "required": [
-                    "accountId"
-                ],
+                "required": [],
                 "properties": {
                     "accountId": {
                         "description": "The TOPS BA ID for this mdn.",
@@ -202,8 +200,7 @@
                     "mdn",
                     "chargeId",
                     "amount",
-                    "description",
-                    "accountId"
+                    "description"
                 ],
                 "properties": {
                     "requestHeader": {

@@ -61,10 +61,10 @@ export class RefundEventRequest {
   /**
    * The TOPS BA ID for this mdn.
    */
-  @property({required: true, jsonSchema: {
+  @property({jsonSchema: {
   $ref: '#/components/schemas/AccountId',
 }})
-  accountId: AccountId;
+  accountId?: AccountId;
 
 }
 
