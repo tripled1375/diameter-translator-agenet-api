@@ -3,6 +3,9 @@ import {DirectDebtEventRequest} from '../models/direct-debt-event-request.model'
 import {DirectDebtEventResponse} from '../models/direct-debt-event-response.model';
 import {RefundEventRequest} from '../models/refund-event-request.model';
 import {RefundEventResponse} from '../models/refund-event-response.model';
+import {DirectDebtEventResultCode} from '../utils/direct-debt-event-result-code.model';
+import {RefundEventResultCode} from '../utils/refund-event-result-code.model';
+
 
 /**
  * The controller class is generated from OpenAPI spec with operations tagged
@@ -362,7 +365,28 @@ export class DiameterTranslatorAgentApiController {
     },
   },
 }) _requestBody: DirectDebtEventRequest): Promise<DirectDebtEventResponse> {
-    throw new Error('Not implemented');
+  console.log("directDebtEvent Has been called");
+    let directDebtEventResponse = new DirectDebtEventResponse;
+
+
+
+    directDebtEventResponse = {
+                                responseHeader : {
+                                            responseTimestamp: Date.now()
+                                },
+                                result : DirectDebtEventResultCode.SUCCESS,
+                                chargeId : String(Math.floor(Math.random() * (99999 - 10000) + 10000))
+                              };
+
+    // console.log("ENUM experiment DirectDebtEventResultCode.SUCCESS " + DirectDebtEventResultCode.SUCCESS);
+    // console.log("ENUM experiment DirectDebtEventResultCode[DirectDebtEventResultCode.SUCCESS] " + DirectDebtEventResultCode[DirectDebtEventResultCode.SUCCESS]);
+    // console.log("ENUM experiment DirectDebtEventResultCode[0] " + DirectDebtEventResultCode[0]);
+    // console.log("ENUM experiment DirectDebtEventResultCode[SUCCESS] " + DirectDebtEventResultCode["SUCCESS"]);
+
+
+    return directDebtEventResponse;
+
+    //throw new Error('Not implemented');
   }
 
   /**
@@ -409,7 +433,28 @@ export class DiameterTranslatorAgentApiController {
     },
   },
 }) _requestBody: RefundEventRequest): Promise<RefundEventResponse> {
-    throw new Error('Not implemented');
+  console.log("refundEventResponse Has been called");
+  let refundEventResponse = new RefundEventResponse;
+
+
+
+  refundEventResponse = {
+                              responseHeader : {
+                                          responseTimestamp: Date.now()
+                              },
+                              result : RefundEventResultCode.SUCCESS,
+                              creditId : String(Math.floor(Math.random() * (99999 - 10000) + 10000))
+                            };
+
+  // console.log("ENUM experiment DirectDebtEventResultCode.SUCCESS " + DirectDebtEventResultCode.SUCCESS);
+  // console.log("ENUM experiment DirectDebtEventResultCode[DirectDebtEventResultCode.SUCCESS] " + DirectDebtEventResultCode[DirectDebtEventResultCode.SUCCESS]);
+  // console.log("ENUM experiment DirectDebtEventResultCode[0] " + DirectDebtEventResultCode[0]);
+  // console.log("ENUM experiment DirectDebtEventResultCode[SUCCESS] " + DirectDebtEventResultCode["SUCCESS"]);
+
+
+  return refundEventResponse;
+
+  //throw new Error('Not implemented');
   }
 
 }

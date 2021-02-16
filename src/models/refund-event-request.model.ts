@@ -1,10 +1,10 @@
 import {model, property} from '@loopback/repository';
 import {RequestHeader} from './request-header.model';
-import {Mdn} from './mdn.model';
-import {Amount} from './amount.model';
-import {ChargeId} from './charge-id.model';
-import {Description} from './description.model';
-import {AccountId} from './account-id.model';
+import {Mdn} from './filedModels/mdn.model';
+import {Amount} from './filedModels/amount.model';
+import {ChargeId} from './filedModels/charge-id.model';
+import {Description} from './filedModels/description.model';
+import {AccountId} from './filedModels/account-id.model';
 
 /**
  * The model class is generated from OpenAPI schema - RefundEventRequest
@@ -30,41 +30,45 @@ export class RefundEventRequest {
    * The MDN to be charged/refunded.
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/Mdn',
-}})
-  mdn: Mdn;
-
+    description: 'The MDN to be charged/refunded.',
+    type: 'string',
+  }})
+    mdn: string;
   /**
    * The amount to be charged/refunded.
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/Amount',
-}})
-  amount: Amount;
+    description: 'The amount to be charged/refunded.',
+    type: 'string',
+  }})
+    amount: string;
 
   /**
    * The chargeId from a successful direct debt event.
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/ChargeId',
-}})
-  chargeId: ChargeId;
+    description: 'The chargeId from a successful direct debt event.',
+    type: 'string',
+  }})
+    chargeId: string;
 
   /**
    * The description of the charge/refund.
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/Description',
-}})
-  description: Description;
+    description: 'The description of the charge/refund.',
+    type: 'string',
+  }})
+    description: string;
 
   /**
    * The TOPS BA ID for this mdn.
    */
   @property({jsonSchema: {
-  $ref: '#/components/schemas/AccountId',
-}})
-  accountId?: AccountId;
+    description: 'The TOPS BA ID for this mdn.',
+    type: 'string',
+  }})
+    accountId?: string;
 
 }
 

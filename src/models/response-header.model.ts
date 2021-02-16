@@ -1,5 +1,5 @@
 import {model, property} from '@loopback/repository';
-import {ResponseTimestamp} from './response-timestamp.model';
+import {ResponseTimestamp} from './filedModels/response-timestamp.model';
 
 /**
  * The model class is generated from OpenAPI schema - ResponseHeader
@@ -19,9 +19,10 @@ receiver should verify that this timestamp is +/- 60s of 'now'. This request
 timestamp is not idempotent upon retries.
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/ResponseTimestamp',
-}})
-  responseTimestamp: ResponseTimestamp;
+    description: "Timestamp of this request represented as milliseconds since epoch. The receiver should verify that this timestamp is +/- 60s of 'now'. This request timestamp is not idempotent upon retries.",
+    type: 'number',
+  }})
+    responseTimestamp: number;
 
 }
 

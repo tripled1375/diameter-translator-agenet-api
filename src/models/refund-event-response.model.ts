@@ -1,7 +1,7 @@
 import {model, property} from '@loopback/repository';
 import {ResponseHeader} from './response-header.model';
-import {RefundEventResultCode} from './refund-event-result-code.model';
-import {CreditId} from './credit-id.model';
+import {RefundEventResultCode} from '../utils/refund-event-result-code.model';
+
 
 /**
  * The model class is generated from OpenAPI schema - RefundEventResponse
@@ -26,18 +26,22 @@ export class RefundEventResponse {
   /**
    * The result of the refund event request.
    */
-  @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/RefundEventResultCode',
+  @property({required: true,
+    jsonSchema: {
+      description: 'Result Code',
+      RefundEventResultCode,
+      $ref: '#/components/schemas/RefundEventResultCode',
 }})
   result: RefundEventResultCode;
 
   /**
-   * The creditId from a successful refund event.
+   * **REQUIRED** The creditId from a successful refund event.
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/CreditId',
-}})
-  creditId: CreditId;
+    description: '**REQUIRED** The creditId from a successful refund event.',
+    type: 'string',
+  }})
+    creditId: string;
 
 }
 

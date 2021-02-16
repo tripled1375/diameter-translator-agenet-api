@@ -1,7 +1,7 @@
 import {model, property} from '@loopback/repository';
 import {ResponseHeader} from './response-header.model';
-import {DirectDebtEventResultCode} from './direct-debt-event-result-code.model';
-import {ChargeId} from './charge-id.model';
+import {DirectDebtEventResultCode} from '../utils/direct-debt-event-result-code.model';
+
 
 /**
  * The model class is generated from OpenAPI schema - DirectDebtEventResponse
@@ -26,8 +26,11 @@ export class DirectDebtEventResponse {
   /**
    * The result of the direct debt event request.
    */
-  @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/DirectDebtEventResultCode',
+  @property({required: true,
+    jsonSchema: {
+      description: 'Result Code',
+      DirectDebtEventResultCode,
+      $ref: '#/components/schemas/DirectDebtEventResultCode',
 }})
   result: DirectDebtEventResultCode;
 
@@ -35,9 +38,10 @@ export class DirectDebtEventResponse {
    * The chargeId from a successful direct debt event.
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/ChargeId',
-}})
-  chargeId: ChargeId;
+    description: 'The chargeId from a successful direct debt event.',
+    type: 'string',
+  }})
+    chargeId: string;
 
 }
 

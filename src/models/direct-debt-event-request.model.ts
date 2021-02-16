@@ -1,8 +1,6 @@
 import {model, property} from '@loopback/repository';
 import {RequestHeader} from './request-header.model';
-import {Mdn} from './mdn.model';
-import {Amount} from './amount.model';
-import {Description} from './description.model';
+
 
 /**
  * The model class is generated from OpenAPI schema - DirectDebtEventRequest
@@ -28,25 +26,27 @@ export class DirectDebtEventRequest {
    * The MDN to be charged/refunded.
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/Mdn',
-}})
-  mdn: Mdn;
+    description: 'The MDN to be charged/refunded.',
+    type: 'string',
+  }})
+    mdn: string;
 
   /**
    * The amount to be charged/refunded.
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/Amount',
-}})
-  amount: Amount;
-
+    description: 'The amount to be charged/refunded.',
+    type: 'number',
+  }})
+    amount: number;
   /**
    * The description of the charge/refund.
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/Description',
-}})
-  description: Description;
+    description: 'The description of the charge/refund.',
+    type: 'string',
+  }})
+    description: string;
 
 }
 

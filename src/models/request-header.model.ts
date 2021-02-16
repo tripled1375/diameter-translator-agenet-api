@@ -1,7 +1,4 @@
 import {model, property} from '@loopback/repository';
-import {RequestId} from './request-id.model';
-import {RequestTimestamp} from './request-timestamp.model';
-import {ApiMajorVersion} from './api-major-version.model';
 
 /**
  * The model class is generated from OpenAPI schema - RequestHeader
@@ -21,9 +18,10 @@ export class RequestHeader {
 \":\", \"-\", and \"_\".
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/RequestId',
-}})
-  requestId: RequestId;
+    description: 'Unique identifier of this request. This is a string that has a max length of 100 characters, and contains only the characters \\"a-z\\", \\"A-Z\\", \\"0-9\\", \\":\\", \\"-\\", and \\"_\\".',
+    type: 'string',
+  }})
+    requestId: string;
 
   /**
    * Timestamp of this request represented as milliseconds since epoch. The
@@ -31,18 +29,20 @@ receiver should verify that this timestamp is +/- 60s of 'now'. This request
 timestamp is not idempotent upon retries.
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/RequestTimestamp',
-}})
-  requestTimestamp: RequestTimestamp;
+    description: "Timestamp of this request represented as milliseconds since epoch. The receiver should verify that this timestamp is +/- 60s of 'now'. This request timestamp is not idempotent upon retries.",
+    type: 'number',
+  }})
+    requestTimestamp: number;
 
   /**
    * Major version. This is marked for compatibility requests with different
 versions are not guaranteed to be compatible.
    */
   @property({required: true, jsonSchema: {
-  $ref: '#/components/schemas/ApiMajorVersion',
-}})
-  apiMajorVersion: ApiMajorVersion;
+    description: 'Major version. This is marked for compatibility requests with different versions are not guaranteed to be compatible.',
+    type: 'number',
+  }})
+    apiMajorVersion: number;
 
 }
 
