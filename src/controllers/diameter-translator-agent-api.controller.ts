@@ -364,24 +364,23 @@ export class DiameterTranslatorAgentApiController {
       },
     },
   },
-}) _requestBody: DirectDebtEventRequest): Promise<DirectDebtEventResponse> {
+//}) _requestBody: DirectDebtEventRequest): Promise<DirectDebtEventResponse> {
+}) _requestBody: DirectDebtEventRequest) {
   console.log("directDebtEvent Has been called");
     let directDebtEventResponse = new DirectDebtEventResponse;
+    directDebtEventResponse.responseHeader = {
+      responseTimestamp : Date.now()
+    };
+
+    const { v4: uuidv4 } = require('uuid');
+    let chargeId = await(uuidv4());
+
+    console.log("chargeId: " + chargeId);
 
 
-
-    directDebtEventResponse = {
-                                responseHeader : {
-                                            responseTimestamp: Date.now()
-                                },
-                                result : DirectDebtEventResultCode.SUCCESS,
-                                chargeId : String(Math.floor(Math.random() * (99999 - 10000) + 10000))
-                              };
-
-    // console.log("ENUM experiment DirectDebtEventResultCode.SUCCESS " + DirectDebtEventResultCode.SUCCESS);
-    // console.log("ENUM experiment DirectDebtEventResultCode[DirectDebtEventResultCode.SUCCESS] " + DirectDebtEventResultCode[DirectDebtEventResultCode.SUCCESS]);
-    // console.log("ENUM experiment DirectDebtEventResultCode[0] " + DirectDebtEventResultCode[0]);
-    // console.log("ENUM experiment DirectDebtEventResultCode[SUCCESS] " + DirectDebtEventResultCode["SUCCESS"]);
+    //directDebtEventResponse.responseHeader.responseTimestamp = Date.now();
+    directDebtEventResponse.chargeId = chargeId;
+    directDebtEventResponse.result = DirectDebtEventResultCode.FAILURE;
 
 
     return directDebtEventResponse;
@@ -436,6 +435,11 @@ export class DiameterTranslatorAgentApiController {
   console.log("refundEventResponse Has been called");
   let refundEventResponse = new RefundEventResponse;
 
+  const { v4: uuidv4 } = require('uuid');
+  let creditId = await(uuidv4());
+
+  console.log("creditId: " + creditId);
+
 
 
   refundEventResponse = {
@@ -443,7 +447,7 @@ export class DiameterTranslatorAgentApiController {
                                           responseTimestamp: Date.now()
                               },
                               result : RefundEventResultCode.SUCCESS,
-                              creditId : String(Math.floor(Math.random() * (99999 - 10000) + 10000))
+                              creditId : creditId
                             };
 
   // console.log("ENUM experiment DirectDebtEventResultCode.SUCCESS " + DirectDebtEventResultCode.SUCCESS);
